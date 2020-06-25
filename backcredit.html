@@ -1,0 +1,27 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+String a=request.getParameter("cardname");
+String b=request.getParameter("cardnumber");
+String c=request.getParameter("expmonth");
+String d=request.getParameter("expyear");
+String e=request.getParameter("cvv");
+Class.forName("com.mysql.jdbc.Driver");
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/beauty","root","nikita");
+PreparedStatement stmt = con.prepareStatement("insert into credit values(?,?,?,?,?)");
+stmt.setString(1,a);
+stmt.setString(2,b);
+stmt.setString(3,c);
+stmt.setString(4,d);
+stmt.setString(5,e);
+stmt.executeUpdate();
+response.sendRedirect("thanks.html");
+%>
+</body>
+</html>
